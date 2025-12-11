@@ -1,25 +1,27 @@
-#cursor {
+#fireflyCursor {
   position: fixed;
-  z-index: 999999999999999999;
+
+  z-index: 9999;
   left: -2px;
   top: -3px;
   height: 0;
   width: 0;
-  animation: pulse-shadow 2.5s infinite alternate ease-in-out;
+
+  animation: pulse-shadow 4s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes pulse-shadow {
   from {
-    box-shadow: rgba(245, 87, 66, 0.2) 0px 0px 80px 60px;
+    box-shadow: rgba(120, 150, 255, 0.2) 0px 0px 80px 60px;
   }
 
   to {
-    box-shadow: rgba(245, 200, 0, 0.1) 0px 0px 90px 90px;
+    box-shadow: rgba(180, 210, 255, 0.1) 0px 0px 90px 90px;
   }
 }
 
-#cursor.click {
-  animation: pulse-shadow-click 0.5s forwards;
+#fireflyCursor.click {
+  animation: pulse-shadow-click 0.8s forwards ease-out;
 }
 
 @keyframes pulse-shadow-click {
@@ -27,9 +29,9 @@
     box-shadow: var(--random-color) 0px 0px 5px 5px;
   }
   65% {
-    box-shadow: rgba(255, 225, 0, 0.1) 0px 0px 120px 120px;
+    box-shadow: rgba(200, 200, 255, 0.1) 0px 0px 120px 120px;
   }
   100% {
-    box-shadow: rgba(245, 87, 66, 0.2) 0px 0px 80px 60px;
+    box-shadow: rgba(120, 150, 255, 0.2) 0px 0px 80px 60px;
   }
 }

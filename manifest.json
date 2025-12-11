@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "cursor",
+  "name": "firefly cursor",
   "version": "1.0",
-  "description": "cursor",
+  "description": "firefly cursor",
   "action": {
     "default_icon": "icon.png"
   },
