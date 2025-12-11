@@ -1,12 +1,10 @@
 #fireflyCursor {
   position: fixed;
-
   z-index: 9999;
   left: -2px;
   top: -3px;
   height: 0;
   width: 0;
-
   animation: pulse-shadow 4s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -28,7 +26,7 @@
   0% {
     box-shadow: var(--random-color) 0px 0px 5px 5px;
   }
-  65% {
+  50% {
     box-shadow: rgba(200, 200, 255, 0.1) 0px 0px 120px 120px;
   }
   100% {

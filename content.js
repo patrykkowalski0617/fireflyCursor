@@ -1,4 +1,4 @@
-(() => {
+setTimeout(() => {
   document.body.insertAdjacentHTML(
     "afterbegin",
     `<div id="fireflyCursor"></div>`
@@ -53,4 +53,4 @@
   };
   window.addEventListener("mousemove", positionElement);
   window.addEventListener("click", clickElement);
-})();
+}, 0);
