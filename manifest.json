@@ -1,13 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "firefly cursor",
+  "name": "Firefly Cursor",
   "version": "1.0",
-  "description": "firefly cursor",
+  "description": "Firefly Cursor",
   "action": {
     "default_icon": "icon.png"
   },
   "permissions": ["storage"],
-
+  "options_ui": {
+    "page": "user-settings.html",
+    "open_in_tab": false
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
