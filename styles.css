@@ -6,15 +6,17 @@
   height: 0;
   width: 0;
   animation: pulse-shadow 4s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 @keyframes pulse-shadow {
   from {
-    box-shadow: rgba(120, 150, 255, 0.2) 0px 0px 80px 60px;
+    box-shadow: rgba(107, 139, 255, 0.3) 0px 0px 80px 60px;
   }
 
   to {
-    box-shadow: rgba(180, 210, 255, 0.1) 0px 0px 90px 90px;
+    box-shadow: rgba(164, 201, 255, 0.2) 0px 0px 90px 90px;
   }
 }
 

@@ -1,42 +1,58 @@
-setTimeout(() => {
+(() => {
+  const FIREFLY_ID = "fireflyCursor";
+  const CLICK_DURATION_MS = 850;
+
   document.body.insertAdjacentHTML(
     "afterbegin",
-    `<div id="fireflyCursor"></div>`
+    `<div id="${FIREFLY_ID}"></div>`
   );
-  const fireflyCursor = document.querySelector("#fireflyCursor");
+  const fireflyCursor = document.querySelector(`#${FIREFLY_ID}`);
 
-  const positionElement = (e) => {
-    const mouseY = e.clientY;
-    const mouseX = e.clientX;
-    fireflyCursor.style.top = `${mouseY}px`;
-    fireflyCursor.style.left = `${mouseX}px`;
-  };
+  let currentMouseX = 0;
+  let currentMouseY = 0;
+  let rAF_ID = null;
+  let timeoutId;
+  let isFirstMouseMoveDone = false;
 
   const getCalmColor = () => {
-    const calmLetters = "9ABCDEF";
+    const highLetters = "ABCDEF";
+    const getRandomHex = () =>
+      highLetters[Math.floor(Math.random() * highLetters.length)];
+
     let color = "#";
-    let component1 =
-      calmLetters[Math.floor(Math.random() * calmLetters.length)];
-    let component2 =
-      calmLetters[Math.floor(Math.random() * calmLetters.length)];
-
-    const lowLetters = "6789";
-    let lowComponent =
-      lowLetters[Math.floor(Math.random() * lowLetters.length)];
-
-    const parts = [
-      component1 + component1,
-      component2 + component2,
-      lowComponent + lowComponent,
-    ].sort(() => Math.random() - 0.5);
-
-    color += parts.join("");
+    for (let i = 0; i < 3; i++) {
+      color += getRandomHex() + getRandomHex();
+    }
     return color;
   };
 
-  let timeoutId;
+  const updateFireflyPosition = () => {
+    fireflyCursor.style.transform = `translate(${currentMouseX}px, ${currentMouseY}px)`;
+    rAF_ID = null;
+  };
 
-  const clickElement = () => {
+  const onMousemove = (e) => {
+    currentMouseY = e.clientY;
+    currentMouseX = e.clientX;
+    if (!isFirstMouseMoveDone) {
+      isFirstMouseMoveDone = true;
+      fireflyCursor.style.opacity = "1";
+    }
+
+    if (!rAF_ID) {
+      rAF_ID = requestAnimationFrame(updateFireflyPosition);
+    }
+  };
+
+  const onFullscreenChange = () => {
+    if (document.fullscreenElement) {
+      fireflyCursor.style.visibility = "hidden";
+    } else {
+      fireflyCursor.style.visibility = "visible";
+    }
+  };
+
+  const onClick = () => {
     const randomColor = getCalmColor();
     fireflyCursor.style.setProperty("--random-color", randomColor);
 
@@ -49,8 +65,10 @@ setTimeout(() => {
 
     timeoutId = setTimeout(() => {
       fireflyCursor.classList.remove("click");
-    }, 850);
+    }, CLICK_DURATION_MS);
   };
-  window.addEventListener("mousemove", positionElement);
-  window.addEventListener("click", clickElement);
-}, 0);
+
+  window.addEventListener("mousemove", onMousemove);
+  window.addEventListener("click", onClick);
+  document.addEventListener("fullscreenchange", onFullscreenChange);
+})();
