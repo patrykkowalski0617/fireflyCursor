@@ -1,12 +1,10 @@
 #fireflyCursor {
   position: fixed;
   z-index: 9999;
-  left: -2px;
-  top: -3px;
   height: 0;
   width: 0;
   animation: pulse-shadow 4s infinite alternate cubic-bezier(0.6, 0.2, 0.4, 1),
-    micro-drift 40s infinite alternate ease-in-out;
+    micro-drift 10s infinite forwards linear;
   opacity: 0;
   transition: opacity 1s ease;
   position: relative;
@@ -22,7 +20,7 @@
 }
 
 #fireflyCursor.click {
-  animation: pulse-shadow-click 0.8s forwards ease-out;
+  animation: pulse-shadow-click 1s forwards ease-out;
 }
 
 @keyframes pulse-shadow-click {
@@ -36,38 +34,409 @@
     box-shadow: rgba(107, 139, 255, 0.3) 0px 0px 80px 60px;
   }
 }
-
 @keyframes micro-drift {
   0% {
-    top: 0px;
     left: 0px;
+    top: 0px;
+  }
+  1% {
+    left: 0.3px;
+    top: 0.55px;
+  }
+  2% {
+    left: 0.56px;
+    top: 1.12px;
+  }
+  3% {
+    left: 0.78px;
+    top: 1.71px;
+  }
+  4% {
+    left: 0.97px;
+    top: 2.31px;
+  }
+  5% {
+    left: 1.12px;
+    top: 2.92px;
+  }
+  6% {
+    left: 1.23px;
+    top: 3.54px;
+  }
+  7% {
+    left: 1.3px;
+    top: 4.16px;
+  }
+  8% {
+    left: 1.34px;
+    top: 4.79px;
+  }
+  9% {
+    left: 1.33px;
+    top: 5.42px;
   }
   10% {
-    left: 10px;
-    top: -6px;
+    left: 1.29px;
+    top: 6.05px;
+  }
+  11% {
+    left: 1.2px;
+    top: 6.67px;
+  }
+  12% {
+    left: 1.08px;
+    top: 7.28px;
+  }
+  13% {
+    left: 0.91px;
+    top: 7.89px;
+  }
+  14% {
+    left: 0.71px;
+    top: 8.49px;
+  }
+  15% {
+    left: 0.48px;
+    top: 9.07px;
+  }
+  16% {
+    left: 0.2px;
+    top: 9.63px;
+  }
+  17% {
+    left: -0.11px;
+    top: 10.18px;
+  }
+  18% {
+    left: -0.45px;
+    top: 10.71px;
+  }
+  19% {
+    left: -0.82px;
+    top: 11.21px;
+  }
+  20% {
+    left: -1.23px;
+    top: 11.69px;
+  }
+  21% {
+    left: -1.66px;
+    top: 12.14px;
+  }
+  22% {
+    left: -2.13px;
+    top: 12.57px;
+  }
+  23% {
+    left: -2.61px;
+    top: 12.97px;
+  }
+  24% {
+    left: -3.13px;
+    top: 13.33px;
   }
   25% {
-    left: -16px;
-    top: 4px;
+    left: -3.66px;
+    top: 13.66px;
+  }
+  26% {
+    left: -4.21px;
+    top: 13.96px;
+  }
+  27% {
+    left: -4.78px;
+    top: 14.22px;
+  }
+  28% {
+    left: -5.37px;
+    top: 14.44px;
+  }
+  29% {
+    left: -5.97px;
+    top: 14.63px;
+  }
+  30% {
+    left: -6.58px;
+    top: 14.78px;
+  }
+  31% {
+    left: -7.2px;
+    top: 14.89px;
+  }
+  32% {
+    left: -7.82px;
+    top: 14.96px;
+  }
+  33% {
+    left: -8.45px;
+    top: 15px;
+  }
+  34% {
+    left: -9.08px;
+    top: 14.99px;
+  }
+  35% {
+    left: -9.71px;
+    top: 14.95px;
+  }
+  36% {
+    left: -10.33px;
+    top: 14.86px;
+  }
+  37% {
+    left: -10.94px;
+    top: 14.74px;
+  }
+  38% {
+    left: -11.55px;
+    top: 14.57px;
+  }
+  39% {
+    left: -12.15px;
+    top: 14.37px;
   }
   40% {
-    left: 6px;
-    top: 18px;
+    left: -12.73px;
+    top: 14.14px;
+  }
+  41% {
+    left: -13.29px;
+    top: 13.86px;
+  }
+  42% {
+    left: -13.84px;
+    top: 13.55px;
+  }
+  43% {
+    left: -14.37px;
+    top: 13.21px;
+  }
+  44% {
+    left: -14.87px;
+    top: 12.84px;
+  }
+  45% {
+    left: -15.35px;
+    top: 12.43px;
+  }
+  46% {
+    left: -15.8px;
+    top: 12px;
+  }
+  47% {
+    left: -16.23px;
+    top: 11.53px;
+  }
+  48% {
+    left: -16.61px;
+    top: 11.05px;
+  }
+  49% {
+    left: -16.99px;
+    top: 10.53px;
+  }
+  50% {
+    left: -17.32px;
+    top: 10px;
+  }
+  51% {
+    left: -17.62px;
+    top: 9.45px;
+  }
+  52% {
+    left: -17.88px;
+    top: 8.88px;
+  }
+  53% {
+    left: -18.1px;
+    top: 8.29px;
+  }
+  54% {
+    left: -18.29px;
+    top: 7.69px;
   }
   55% {
-    left: -2px;
-    top: 2px;
+    left: -18.44px;
+    top: 7.08px;
+  }
+  56% {
+    left: -18.55px;
+    top: 6.46px;
+  }
+  57% {
+    left: -18.62px;
+    top: 5.84px;
+  }
+  58% {
+    left: -18.66px;
+    top: 5.21px;
+  }
+  59% {
+    left: -18.65px;
+    top: 4.58px;
+  }
+  60% {
+    left: -18.61px;
+    top: 3.95px;
+  }
+  61% {
+    left: -18.52px;
+    top: 3.33px;
+  }
+  62% {
+    left: -18.4px;
+    top: 2.72px;
+  }
+  63% {
+    left: -18.23px;
+    top: 2.11px;
+  }
+  64% {
+    left: -18.03px;
+    top: 1.51px;
+  }
+  65% {
+    left: -17.8px;
+    top: 0.93px;
+  }
+  66% {
+    left: -17.52px;
+    top: 0.37px;
+  }
+  67% {
+    left: -17.21px;
+    top: -0.18px;
+  }
+  68% {
+    left: -16.87px;
+    top: -0.71px;
+  }
+  69% {
+    left: -16.5px;
+    top: -1.21px;
+  }
+  70% {
+    left: -16.09px;
+    top: -1.69px;
+  }
+  71% {
+    left: -15.66px;
+    top: -2.14px;
+  }
+  72% {
+    left: -15.19px;
+    top: -2.57px;
+  }
+  73% {
+    left: -14.71px;
+    top: -2.97px;
+  }
+  74% {
+    left: -14.19px;
+    top: -3.33px;
   }
   75% {
-    left: 14px;
-    top: -10px;
+    left: -13.66px;
+    top: -3.66px;
+  }
+  76% {
+    left: -13.11px;
+    top: -3.96px;
+  }
+  77% {
+    left: -12.54px;
+    top: -4.22px;
+  }
+  78% {
+    left: -11.95px;
+    top: -4.44px;
+  }
+  79% {
+    left: -11.35px;
+    top: -4.63px;
+  }
+  80% {
+    left: -10.74px;
+    top: -4.78px;
+  }
+  81% {
+    left: -10.12px;
+    top: -4.89px;
+  }
+  82% {
+    left: -9.5px;
+    top: -4.96px;
+  }
+  83% {
+    left: -8.87px;
+    top: -5px;
+  }
+  84% {
+    left: -8.24px;
+    top: -4.99px;
+  }
+  85% {
+    left: -7.61px;
+    top: -4.95px;
+  }
+  86% {
+    left: -6.99px;
+    top: -4.86px;
+  }
+  87% {
+    left: -6.38px;
+    top: -4.74px;
+  }
+  88% {
+    left: -5.77px;
+    top: -4.57px;
+  }
+  89% {
+    left: -5.17px;
+    top: -4.37px;
   }
   90% {
-    left: -20px;
-    top: 0px;
+    left: -4.59px;
+    top: -4.14px;
+  }
+  91% {
+    left: -4.03px;
+    top: -3.86px;
+  }
+  92% {
+    left: -3.48px;
+    top: -3.55px;
+  }
+  93% {
+    left: -2.95px;
+    top: -3.21px;
+  }
+  94% {
+    left: -2.45px;
+    top: -2.84px;
+  }
+  95% {
+    left: -1.97px;
+    top: -2.43px;
+  }
+  96% {
+    left: -1.52px;
+    top: -2px;
+  }
+  97% {
+    left: -1.09px;
+    top: -1.53px;
+  }
+  98% {
+    left: -0.69px;
+    top: -1.05px;
+  }
+  99% {
+    left: -0.33px;
+    top: -0.53px;
   }
   100% {
-    top: 0px;
     left: 0px;
+    top: 0px;
   }
 }

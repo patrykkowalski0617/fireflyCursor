@@ -1,6 +1,6 @@
 (() => {
   const FIREFLY_ID = "fireflyCursor";
-  const CLICK_DURATION_MS = 850;
+  const CLICK_DURATION_MS = 1050;
 
   document.body.insertAdjacentHTML(
     "afterbegin",
