@@ -1,9 +1,12 @@
+:root {
+  color-scheme: light only;
+}
 * {
   box-sizing: border-box;
 }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #121212;
+  background: #494949;
   color: #e0e0e0;
   margin: 0;
   padding: 15px;
@@ -16,53 +19,43 @@ body {
   user-select: none;
 }
 
-h2 {
-  margin-bottom: 15px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-}
 .fireflyCursorUserSettings {
   display: none;
 }
 .cursorWrapper {
   width: calc(100vw - 30px);
-  max-width: 360px;
+  max-width: 370px;
   height: 360px;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #1e1e1e;
+  background: #0d0d0d;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   position: relative;
   cursor: pointer;
 }
+input[type="range"],
+.cursorWrapper {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
 .cursorLabel {
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  bottom: 6px;
+  right: 20px;
+  font-style: italic;
+  opacity: 0.5;
 }
 
 p,
 label {
   margin: 0 0 10px;
-  color: #bbbbbb;
-}
-.previeWrapper {
-  margin-bottom: 50px;
-}
-.slider-container {
-  width: 100%;
 }
 
 label {
   display: block;
-  font-size: 1.1em;
-  margin-bottom: 12px;
 }
 
 input[type="range"] {
@@ -119,9 +112,11 @@ input[type="range"]:active::-moz-range-thumb {
   transform: scale(1.15);
 }
 
-.checkbox-container {
-  width: 100%;
-  margin: 28px 0;
+.setting-wrapper {
+  max-width: 230px;
+}
+.section {
+  margin: 0 auto 24px;
 }
 
 .checkbox-container label {
@@ -133,7 +128,6 @@ input[type="range"]:active::-moz-range-thumb {
   padding: 12px 0;
 }
 
-/* Ukrywamy domyślny checkbox */
 .checkbox-container input[type="checkbox"] {
   position: absolute;
   opacity: 0;
@@ -141,7 +135,6 @@ input[type="range"]:active::-moz-range-thumb {
   height: 0;
 }
 
-/* Customowy toggle switch */
 .toggle-switch {
   position: relative;
   width: 64px;

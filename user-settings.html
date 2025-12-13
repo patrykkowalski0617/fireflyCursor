@@ -10,34 +10,32 @@
     <div class="fireflyCursorUserSettings">
       This div is just information for javascript
     </div>
-    <h2>Settings Firefly Cursor</h2>
 
-    <div class="previeWrapper">
-      <div class="cursorWrapper">
-        <div class="cursorLabel">click me</div>
+    <div class="settingWrapper">
+      <div class="cursorWrapper section">
+        <div class="cursorLabel">Preview. Cilck me.</div>
       </div>
 
-      <p>Preview</p>
-    </div>
+      <div class="setting-wrapper section slider-container">
+        <label
+          >Temperature
+          <input
+            type="range"
+            id="colorSlider"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+        /></label>
+      </div>
 
-    <div class="slider-container">
-      <label>Temperature:</label>
-      <input
-        type="range"
-        id="colorSlider"
-        min="0"
-        max="100"
-        step="1"
-        value="50"
-      />
-    </div>
-
-    <div class="checkbox-container">
-      <label>
-        Vibrant Click Color
-        <input type="checkbox" id="vibrantClickColor" />
-        <span class="toggle-switch"></span>
-      </label>
+      <div class="setting-wrapper section checkbox-container">
+        <label>
+          Vibrant Click Color
+          <input type="checkbox" id="vibrantClickColor" />
+          <span class="toggle-switch"></span>
+        </label>
+      </div>
     </div>
 
     <script src="create-firefly-cursor.js"></script>
