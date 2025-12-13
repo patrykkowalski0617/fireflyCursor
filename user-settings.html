@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Firefly Cursor – Settings</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+      }
+
+      .cursorWrapper {
+        width: 100%;
+        height: 360px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #1e1e1e;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+
+      p {
+        margin: 0 0 10px;
+        font-size: 1.1em;
+        color: #bbbbbb;
+      }
+
+      .slider-container {
+        width: 100%;
+      }
+
+      label {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        color: #ffffff;
+      }
+
+      /* === Stylowanie suwaka === */
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 12px;
+        background: #333;
+        border-radius: 12px;
+        outline: none;
+        margin: 10px 0;
+      }
+
+      /* Tło wypełnionej części suwaka */
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 12px;
+        border-radius: 12px;
+        background: linear-gradient(
+          to right,
+          #4a90e2,
+          #ffffff,
+          #f39c12,
+          #e74c3c
+        );
+      }
+
+      input[type="range"]::-moz-range-track {
+        height: 12px;
+        border-radius: 12px;
+        background: linear-gradient(
+          to right,
+          #4a90e2,
+          #ffffff,
+          #f39c12,
+          #e74c3c
+        );
+        border: none;
+      }
+
+      /* Thumb (uchwyt) */
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 28px;
+        height: 28px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-top: -8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        border: 3px solid #333;
+        transition: transform 0.2s;
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 28px;
+        height: 28px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        border: 3px solid #333;
+        transition: transform 0.2s;
+      }
+
+      input[type="range"]:active::-webkit-slider-thumb,
+      input[type="range"]:active::-moz-range-thumb {
+        transform: scale(1.15);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Settings Firefly Cursor</h2>
+
+    <div class="cursorWrapper">
+      <div class="fireflyCursor userSettingsCursor"></div>
+    </div>
+
+    <p>Preview</p>
+
+    <div class="slider-container">
+      <label>Temperature:</label>
+      <input
+        type="range"
+        id="colorSlider"
+        min="0"
+        max="100"
+        step="1"
+        value="50"
+      />
+    </div>
+
+    <script src="user-settings.js"></script>
+  </body>
+</html>

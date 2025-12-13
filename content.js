@@ -4,15 +4,28 @@
 
   document.body.insertAdjacentHTML(
     "afterbegin",
-    `<div id="${FIREFLY_ID}"></div>`
+    `<div class="${FIREFLY_ID}"></div>`
   );
-  const fireflyCursor = document.querySelector(`#${FIREFLY_ID}`);
+  const fireflyCursor = document.querySelector(`.${FIREFLY_ID}`);
+
+  chrome.storage.sync.get(["pulseFrom", "pulseTo"], (data) => {
+    if (data.pulseFrom) {
+      document.documentElement.style.setProperty(
+        "--pulse-from",
+        data.pulseFrom
+      );
+    }
+    if (data.pulseTo) {
+      document.documentElement.style.setProperty("--pulse-to", data.pulseTo);
+    }
+  });
 
   let currentMouseX = 0;
   let currentMouseY = 0;
   let rAF_ID = null;
   let timeoutId;
   let isFirstMouseMoveDone = false;
+  let clickVibrantColor = false;
 
   const getCalmColor = () => {
     const highLetters = "ABCDEF";
@@ -24,6 +37,31 @@
       color += getRandomHex() + getRandomHex();
     }
     return color;
+  };
+
+  const getVibrantColor = () => {
+    let r, g, b;
+
+    do {
+      r = Math.floor(Math.random() * 256);
+      g = Math.floor(Math.random() * 256);
+      b = Math.floor(Math.random() * 256);
+
+      const lightness = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      const saturation = max === 0 ? 0 : (max - min) / max;
+
+      if (lightness >= 0.3 && lightness <= 0.7 && saturation >= 0.4) {
+        break;
+      }
+    } while (true);
+
+    return `#${r.toString(16).padStart(2, "0").toUpperCase()}${g
+      .toString(16)
+      .padStart(2, "0")
+      .toUpperCase()}${b.toString(16).padStart(2, "0").toUpperCase()}`;
   };
 
   const updateFireflyPosition = () => {
@@ -53,7 +91,7 @@
   };
 
   const onClick = () => {
-    const randomColor = getCalmColor();
+    const randomColor = clickVibrantColor ? getVibrantColor() : getCalmColor();
     fireflyCursor.style.setProperty("--random-color", randomColor);
 
     fireflyCursor.classList.remove("click");
