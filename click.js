@@ -40,7 +40,6 @@ const hexToRgbComponents = (hex) => {
 };
 
 const onClick = (e, cursor) => {
-  console.log("clickVibrantColor", clickVibrantColor);
   const randomHexColor = clickVibrantColor ? getVibrantColor() : getCalmColor();
   const rgb = hexToRgbComponents(randomHexColor);
   cursor.style.setProperty("--random-color-r", rgb.r);

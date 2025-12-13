@@ -2,7 +2,7 @@
   z-index: 9999;
   height: 0;
   width: 0;
-  animation: pulse-shadow 5s infinite alternate cubic-bezier(0.6, 0.2, 0.4, 1),
+  animation: pulse-shadow 5s infinite alternate ease-in-out,
     micro-drift 10s infinite forwards linear;
   transition: opacity 1s ease;
   position: relative;

@@ -26,11 +26,12 @@ const lightenColor = (color, factor = 0.2) => ({
 
 const applyColors = (val) => {
   const color = colorFromValue(val);
-  const rgb = `rgb(${color.r}, ${color.g}, ${color.b}, 0.2)`;
+  const rgb = `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`;
+  console.log("rgb", rgb);
   document.documentElement.style.setProperty("--pulse-from", rgb);
 
   const lighter = lightenColor(color, 0.3);
-  const rgbLighter = `rgb(${lighter.r}, ${lighter.g}, ${lighter.b}, 0.3)`;
+  const rgbLighter = `rgba(${lighter.r}, ${lighter.g}, ${lighter.b}, 0.1)`;
   document.documentElement.style.setProperty("--pulse-to", rgbLighter);
 
   chrome.storage.sync.set({
