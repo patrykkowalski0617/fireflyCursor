@@ -57,3 +57,17 @@ chrome.storage.sync.get(["temperature"], (result) => {
 });
 
 slider.addEventListener("input", updateColor);
+
+// vibrant color
+const vibrantCheckbox = document.getElementById("vibrantClickColor");
+
+if (vibrantCheckbox) {
+  chrome.storage.sync.get(["clickVibrantColor"], (result) => {
+    vibrantCheckbox.checked = result.clickVibrantColor === true;
+  });
+
+  vibrantCheckbox.addEventListener("change", () => {
+    const enabled = vibrantCheckbox.checked;
+    chrome.storage.sync.set({ clickVibrantColor: enabled });
+  });
+}

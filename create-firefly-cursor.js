@@ -12,4 +12,5 @@ insertionElement.insertAdjacentHTML(
     isUserSettingPage ? "userSettingsCursor" : ""
   }"></div>`
 );
+
 const fireflyCursor = document.querySelector(`.fireflyCursor`);
