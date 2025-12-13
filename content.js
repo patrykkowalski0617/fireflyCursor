@@ -25,6 +25,7 @@
   let rAF_ID = null;
   let timeoutId;
   let isFirstMouseMoveDone = false;
+  let clickVibrantColor = false;
 
   const getCalmColor = () => {
     const highLetters = "ABCDEF";
@@ -90,7 +91,7 @@
   };
 
   const onClick = () => {
-    const randomColor = getVibrantColor();
+    const randomColor = clickVibrantColor ? getVibrantColor() : getCalmColor();
     fireflyCursor.style.setProperty("--random-color", randomColor);
 
     fireflyCursor.classList.remove("click");
