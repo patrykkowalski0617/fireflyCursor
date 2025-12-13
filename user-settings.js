@@ -1,3 +1,5 @@
+fireflyCursor.addEventListener("click", (e) => onClick(e, fireflyCursor));
+
 const slider = document.querySelector("#colorSlider");
 
 const colorFromValue = (val) => {
