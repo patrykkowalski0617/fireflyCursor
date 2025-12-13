@@ -1,25 +1,36 @@
-#fireflyCursor {
+.fireflyCursor {
   position: fixed;
   z-index: 9999;
   height: 0;
   width: 0;
   animation: pulse-shadow 4s infinite alternate cubic-bezier(0.6, 0.2, 0.4, 1),
     micro-drift 10s infinite forwards linear;
-  opacity: 0;
   transition: opacity 1s ease;
   position: relative;
 }
 
-@keyframes pulse-shadow {
+.fireflyCursor:not(.userSettingsCursor) {
+  opacity: 0;
+}
+
+/* @keyframes pulse-shadow {
   from {
     box-shadow: rgba(107, 139, 255, 0.3) 0px 0px 80px 60px;
   }
   to {
     box-shadow: rgba(164, 201, 255, 0.2) 0px 0px 90px 90px;
   }
+}  */
+@keyframes pulse-shadow {
+  from {
+    box-shadow: var(--pulse-from) 0px 0px 80px 60px;
+  }
+  to {
+    box-shadow: var(--pulse-to) 0px 0px 90px 90px;
+  }
 }
 
-#fireflyCursor.click {
+.fireflyCursor.click {
   animation: pulse-shadow-click 1s forwards ease-out;
 }
 
