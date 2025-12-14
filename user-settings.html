@@ -12,80 +12,96 @@
     </div>
 
     <div class="settingWrapper">
-      <div class="cursorWrapper section">
+      <div class="cursorWrapper">
         <div class="cursorLabel"><span>Preview.</span> Click me.</div>
       </div>
 
-      <div class="setting-wrapper section slider-size">
-        <label
-          ><span class="label-txt-shadow">Size</span>
-          <input
-            type="range"
-            id="sizeSlider"
-            min="30"
-            max="70"
-            step="1"
-            value="50"
-        /></label>
-      </div>
+      <div class="settings-container">
+        <div class="setting-wrapper slider-size">
+          <label
+            ><span class="label-txt-shadow">Size</span>
+            <input
+              type="range"
+              id="sizeSlider"
+              min="30"
+              max="70"
+              step="1"
+              value="50"
+          /></label>
+        </div>
 
-      <div class="setting-wrapper section slider-intensity">
-        <label
-          ><span class="label-txt-shadow">Intensity</span>
-          <input
-            type="range"
-            id="intensitySlider"
-            min="30"
-            max="80"
-            step="1"
-            value="50"
-        /></label>
-      </div>
+        <div class="setting-wrapper slider-intensity">
+          <label
+            ><span class="label-txt-shadow">Intensity</span>
+            <input
+              type="range"
+              id="intensitySlider"
+              min="30"
+              max="80"
+              step="1"
+              value="50"
+          /></label>
+        </div>
 
-      <div class="setting-wrapper section slider-temperature">
-        <label
-          ><span class="label-txt-shadow">Temperature</span>
-          <input
-            type="range"
-            id="colorSlider"
-            min="0"
-            max="100"
-            step="1"
-            value="50"
-        /></label>
-      </div>
+        <div class="setting-wrapper slider-temperature">
+          <label
+            ><span class="label-txt-shadow">Temperature</span>
+            <input
+              type="range"
+              id="colorSlider"
+              min="0"
+              max="100"
+              step="1"
+              value="50"
+          /></label>
+        </div>
 
-      <div
-        class="setting-wrapper section checkbox-type-setting checkbox-click-color"
-      >
-        <label>
-          <input type="checkbox" id="vibrantClickColor" />
-          <span class="toggle-switch"></span>
-          <span class="label-left label-txt-shadow"
-            >Calm <br />
-            Click Color</span
-          >
-          <span class="label-right label-txt-shadow"
-            >Vibrant <br />
-            Click Color</span
-          >
-        </label>
-      </div>
+        <div
+          class="setting-wrapper checkbox-type-setting"
+          style="display: none"
+        >
+          <label>
+            <input type="checkbox" id="temperatureMode" />
+            <span class="toggle-switch"></span>
+            <span class="label-left label-txt-shadow"
+              >Temperature <br />
+              Base on Setting</span
+            >
+            <span class="label-right label-txt-shadow"
+              >Temperature<br />
+              Base on Time</span
+            >
+          </label>
+        </div>
 
-      <div
-        class="setting-wrapper section checkbox-type-setting checkbox-color-mode-previeww"
-      >
-        <label>
-          <input type="checkbox" id="previewLightMode" />
-          <span class="toggle-switch"></span>
-          <span class="label-left label-txt-shadow"
-            >Dark mode <br />preview
-          </span>
-          <span class="label-right label-txt-shadow"
-            >Light mode <br />
-            preview</span
-          >
-        </label>
+        <div class="setting-wrapper checkbox-type-setting">
+          <label>
+            <input type="checkbox" id="vibrantClickColor" />
+            <span class="toggle-switch"></span>
+            <span class="label-left label-txt-shadow"
+              >Calm <br />
+              Click Color</span
+            >
+            <span class="label-right label-txt-shadow"
+              >Vibrant <br />
+              Click Color</span
+            >
+          </label>
+        </div>
+
+        <div class="setting-wrapper checkbox-type-setting">
+          <label>
+            <input type="checkbox" id="previewLightMode" />
+            <span class="toggle-switch"></span>
+            <span class="label-left label-txt-shadow"
+              >Dark mode <br />preview
+            </span>
+            <span class="label-right label-txt-shadow"
+              >Light mode <br />
+              preview</span
+            >
+          </label>
+        </div>
       </div>
     </div>
 

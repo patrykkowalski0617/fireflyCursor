@@ -91,14 +91,13 @@ if (vibrantCheckbox) {
 }
 
 // ==================== BLOCK: PREVIEW LIGHT MODE (CHECKBOX) ====================
-// Funkcja zmieniająca tło podglądu w panelu ustawień
 const updatePreviewBackground = (isLightMode) => {
   const preview = document.querySelector(".cursorWrapper");
   if (preview) {
     if (isLightMode) {
-      preview.style.backgroundColor = "#cacacaff"; // jasne tło
+      preview.style.backgroundColor = "#cacacaff";
     } else {
-      preview.style.backgroundColor = "#0d0d0d"; // ciemne tło (domyślne)
+      preview.style.backgroundColor = "#0d0d0d";
     }
   }
 };
@@ -106,18 +105,49 @@ const updatePreviewBackground = (isLightMode) => {
 const previewLightModeCheckbox = document.getElementById("previewLightMode");
 
 if (previewLightModeCheckbox) {
-  // Wczytaj zapisany stan przy otwarciu ustawień
   chrome.storage.sync.get(["previewLightMode"], (result) => {
     const isLight = result.previewLightMode === true;
     previewLightModeCheckbox.checked = isLight;
     updatePreviewBackground(isLight);
   });
 
-  // Zapisz przy zmianie + zaktualizuj podgląd
   previewLightModeCheckbox.addEventListener("change", () => {
     const enabled = previewLightModeCheckbox.checked;
     chrome.storage.sync.set({ previewLightMode: enabled });
     updatePreviewBackground(enabled);
+  });
+}
+
+// ==================== BLOCK: TEMPERATURE MODE (CHECKBOX) ====================
+const temperatureModeCheckbox = document.getElementById("temperatureMode");
+const colorSlider = document.querySelector("#colorSlider");
+const sliderTemperature = document.querySelector(".slider-temperature");
+
+const updateTemperatureSliderState = (isTimeBased) => {
+  if (isTimeBased) {
+    colorSlider.disabled = true;
+    colorSlider.style.opacity = "0.2";
+    colorSlider.style.pointerEvents = "none";
+    sliderTemperature.classList.add("hidden");
+  } else {
+    colorSlider.disabled = false;
+    colorSlider.style.opacity = "";
+    colorSlider.style.pointerEvents = "";
+    sliderTemperature.classList.remove("hidden");
+  }
+};
+
+if (temperatureModeCheckbox && colorSlider) {
+  chrome.storage.sync.get(["temperatureMode"], (result) => {
+    const isTimeBased = result.temperatureMode === true;
+    temperatureModeCheckbox.checked = isTimeBased;
+    updateTemperatureSliderState(isTimeBased);
+  });
+
+  temperatureModeCheckbox.addEventListener("change", () => {
+    const isTimeBased = temperatureModeCheckbox.checked;
+    chrome.storage.sync.set({ temperatureMode: isTimeBased });
+    updateTemperatureSliderState(isTimeBased);
   });
 }
 
@@ -129,6 +159,7 @@ chrome.storage.sync.get(
     "sizeValue",
     "clickVibrantColor",
     "previewLightMode",
+    "temperatureMode",
   ],
   (result) => {
     const savedTemp = result.temperature ?? 50;
@@ -136,30 +167,31 @@ chrome.storage.sync.get(
     const savedSize = result.sizeValue ?? 50;
     const savedVibrantClick = result.clickVibrantColor === true;
     const savedPreviewLight = result.previewLightMode === true;
+    const savedTemperatureMode = result.temperatureMode === true;
 
-    // Suwaki
     slider.value = savedTemp;
     intensitySlider.value = savedIntensity;
     sizeSlider.value = savedSize;
 
-    // Checkboxy
     if (vibrantCheckbox) {
       vibrantCheckbox.checked = savedVibrantClick;
     }
     if (previewLightModeCheckbox) {
       previewLightModeCheckbox.checked = savedPreviewLight;
+      updatePreviewBackground(savedPreviewLight);
+    }
+    if (temperatureModeCheckbox) {
+      temperatureModeCheckbox.checked = savedTemperatureMode;
+      updateTemperatureSliderState(savedTemperatureMode);
     }
 
-    // Zastosuj wartości suwaków
     applyColors(savedTemp);
     applyIntensity(savedIntensity);
     applySize(savedSize);
   }
 );
 
-// ==================== on Mouse Preview Leave ====================
-
-fireflyCursor.classList.add("center-cursor");
+// ==================== CURSOR CENTERING ON PREVIEW HOVER ====================
 const onSettingsLeave = () => {
   fireflyCursor.classList.add("center-cursor");
 };
@@ -170,8 +202,10 @@ const onSettingsEnter = () => {
 
 const cursorWrapper = document.querySelector(".cursorWrapper");
 
-cursorWrapper.addEventListener("mouseleave", onSettingsLeave);
-cursorWrapper.addEventListener("mouseenter", onSettingsEnter);
+if (cursorWrapper) {
+  cursorWrapper.addEventListener("mouseleave", onSettingsLeave);
+  cursorWrapper.addEventListener("mouseenter", onSettingsEnter);
+}
 
 // ==================== EVENT LISTENERS FOR SLIDERS ====================
 slider.addEventListener("input", updateColor);
