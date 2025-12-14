@@ -195,7 +195,7 @@ chrome.storage.sync.get(
 const onSettingsLeave = () => {
   fireflyCursor.classList.add("center-cursor");
 };
-
+onSettingsLeave();
 const onSettingsEnter = () => {
   fireflyCursor.classList.remove("center-cursor");
 };
