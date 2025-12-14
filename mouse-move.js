@@ -3,6 +3,8 @@ let currentMouseY = 0;
 let rAF_ID = null;
 let isFirstMouseMoveDone = false;
 
+console.log("isUserSettingPage", isUserSettingPage);
+
 const updateFireflyPosition = () => {
   fireflyCursor.style.transform = `translate(${currentMouseX}px, ${currentMouseY}px)`;
   rAF_ID = null;

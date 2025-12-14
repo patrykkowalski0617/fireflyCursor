@@ -96,11 +96,9 @@ const updatePreviewBackground = (isLightMode) => {
   const preview = document.querySelector(".cursorWrapper");
   if (preview) {
     if (isLightMode) {
-      preview.style.backgroundColor = "#f0f0f0"; // jasne tło
-      preview.style.color = "#000000";
+      preview.style.backgroundColor = "#cacacaff"; // jasne tło
     } else {
       preview.style.backgroundColor = "#0d0d0d"; // ciemne tło (domyślne)
-      preview.style.color = "#e0e0e0";
     }
   }
 };
@@ -158,6 +156,22 @@ chrome.storage.sync.get(
     applySize(savedSize);
   }
 );
+
+// ==================== on Mouse Preview Leave ====================
+
+fireflyCursor.classList.add("center-cursor");
+const onSettingsLeave = () => {
+  fireflyCursor.classList.add("center-cursor");
+};
+
+const onSettingsEnter = () => {
+  fireflyCursor.classList.remove("center-cursor");
+};
+
+const cursorWrapper = document.querySelector(".cursorWrapper");
+
+cursorWrapper.addEventListener("mouseleave", onSettingsLeave);
+cursorWrapper.addEventListener("mouseenter", onSettingsEnter);
 
 // ==================== EVENT LISTENERS FOR SLIDERS ====================
 slider.addEventListener("input", updateColor);
