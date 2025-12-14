@@ -18,10 +18,14 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-
 .fireflyCursorUserSettings {
   display: none;
 }
+
+.userSettingsCursor {
+  opacity: var(--opacity);
+}
+
 .cursorWrapper {
   width: calc(100vw - 30px);
   max-width: 370px;
@@ -30,7 +34,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0d0d0d;
+  background: #222325;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -46,7 +50,10 @@ input[type="range"],
   bottom: 6px;
   right: 20px;
   font-style: italic;
-  opacity: 0.5;
+  opacity: 0.4;
+}
+.cursorLabel span {
+  opacity: 0.6;
 }
 
 p,
@@ -69,16 +76,35 @@ input[type="range"] {
   margin: 10px 0;
 }
 
+.slider-size input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #cfcfcf, #6587ff);
+}
+.slider-size input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, #cfcfcf, #6587ff);
+}
+
+.slider-intensity input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #cfcfcf, #d29d52);
+}
+.slider-intensity input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, #cfcfcf, #d29d52);
+}
+
+.slider-temperature input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #4a90e2, #ffffff, #f39c12, #e74c3c);
+}
+.slider-temperature input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, #4a90e2, #ffffff, #f39c12, #e74c3c);
+}
+
 input[type="range"]::-webkit-slider-runnable-track {
   height: 12px;
   border-radius: 12px;
-  background: linear-gradient(to right, #4a90e2, #ffffff, #f39c12, #e74c3c);
 }
 
 input[type="range"]::-moz-range-track {
   height: 12px;
   border-radius: 12px;
-  background: linear-gradient(to right, #4a90e2, #ffffff, #f39c12, #e74c3c);
   border: none;
 }
 
@@ -119,7 +145,7 @@ input[type="range"]:active::-moz-range-thumb {
   margin: 0 auto 24px;
 }
 
-.checkbox-container label {
+.checkbox-type-setting label {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -128,7 +154,7 @@ input[type="range"]:active::-moz-range-thumb {
   padding: 12px 0;
 }
 
-.checkbox-container input[type="checkbox"] {
+.checkbox-type-setting input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -139,7 +165,7 @@ input[type="range"]:active::-moz-range-thumb {
   position: relative;
   width: 64px;
   height: 32px;
-  background: #333;
+  background: linear-gradient(90deg, #ffb6c1, #a8e6cf);
   border-radius: 32px;
   transition: background 0.3s ease;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -168,4 +194,31 @@ input[type="checkbox"]:checked + .toggle-switch::before {
 
 input[type="checkbox"]:focus + .toggle-switch {
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+.checkbox-type-setting label {
+  display: flex;
+  justify-content: space-between;
+}
+.checkbox-type-setting .label-right {
+  text-align: right;
+}
+
+.checkbox-type-setting input[type="checkbox"]:not(:checked) ~ .label-left,
+.checkbox-type-setting input[type="checkbox"]:checked ~ .label-right {
+  opacity: 1;
+}
+
+.checkbox-type-setting input[type="checkbox"]:not(:checked) ~ .label-right,
+.checkbox-type-setting input[type="checkbox"]:checked ~ .label-left {
+  opacity: 0.3;
+}
+
+.checkbox-type-setting .label-left {
+  order: 1;
+}
+.checkbox-type-setting .toggle-switch {
+  order: 2;
+}
+.checkbox-type-setting .label-right {
+  order: 3;
 }

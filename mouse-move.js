@@ -1,12 +1,3 @@
-chrome.storage.sync.get(["pulseFrom", "pulseTo"], (data) => {
-  if (data.pulseFrom) {
-    document.documentElement.style.setProperty("--pulse-from", data.pulseFrom);
-  }
-  if (data.pulseTo) {
-    document.documentElement.style.setProperty("--pulse-to", data.pulseTo);
-  }
-});
-
 let currentMouseX = 0;
 let currentMouseY = 0;
 let rAF_ID = null;
@@ -22,7 +13,7 @@ const onMousemove = (e) => {
   currentMouseX = e.clientX;
   if (!isFirstMouseMoveDone) {
     isFirstMouseMoveDone = true;
-    fireflyCursor.style.opacity = "1";
+    fireflyCursor.classList.add("visible");
   }
 
   if (!rAF_ID) {

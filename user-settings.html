@@ -13,10 +13,36 @@
 
     <div class="settingWrapper">
       <div class="cursorWrapper section">
-        <div class="cursorLabel">Preview. Cilck me.</div>
+        <div class="cursorLabel"><span>Preview.</span> Click me.</div>
       </div>
 
-      <div class="setting-wrapper section slider-container">
+      <div class="setting-wrapper section slider-size">
+        <label
+          >Size
+          <input
+            type="range"
+            id="sizeSlider"
+            min="30"
+            max="70"
+            step="1"
+            value="50"
+        /></label>
+      </div>
+
+      <div class="setting-wrapper section slider-intensity">
+        <label
+          >Intensity
+          <input
+            type="range"
+            id="intensitySlider"
+            min="30"
+            max="80"
+            step="1"
+            value="50"
+        /></label>
+      </div>
+
+      <div class="setting-wrapper section slider-temperature">
         <label
           >Temperature
           <input
@@ -29,16 +55,40 @@
         /></label>
       </div>
 
-      <div class="setting-wrapper section checkbox-container">
+      <div
+        class="setting-wrapper section checkbox-type-setting checkbox-click-color"
+      >
         <label>
-          Vibrant Click Color
           <input type="checkbox" id="vibrantClickColor" />
           <span class="toggle-switch"></span>
+          <span class="label-left"
+            >Calm <br />
+            Click Color</span
+          >
+          <span class="label-right"
+            >Vibrant <br />
+            Click Color</span
+          >
+        </label>
+      </div>
+
+      <div
+        class="setting-wrapper section checkbox-type-setting checkbox-color-mode-previeww"
+      >
+        <label>
+          <input type="checkbox" id="previewLightMode" />
+          <span class="toggle-switch"></span>
+          <span class="label-left">Dark mode <br />preview </span>
+          <span class="label-right"
+            >Light mode <br />
+            preview</span
+          >
         </label>
       </div>
     </div>
 
     <script src="create-firefly-cursor.js"></script>
+    <script src="get-variables-from-storage.js"></script>
     <script src="click.js"></script>
     <script src="user-settings.js"></script>
   </body>

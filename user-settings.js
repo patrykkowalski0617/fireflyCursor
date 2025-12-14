@@ -1,5 +1,6 @@
 fireflyCursor.addEventListener("click", (e) => onClick(e, fireflyCursor));
 
+// ==================== BLOCK: TEMPERATURE (COLOR) ====================
 const slider = document.querySelector("#colorSlider");
 
 const colorFromValue = (val) => {
@@ -26,12 +27,11 @@ const lightenColor = (color, factor = 0.2) => ({
 
 const applyColors = (val) => {
   const color = colorFromValue(val);
-  const rgb = `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`;
-  console.log("rgb", rgb);
+  const rgb = `rgba(${color.r}, ${color.g}, ${color.b}, var(--opacity))`;
   document.documentElement.style.setProperty("--pulse-from", rgb);
 
   const lighter = lightenColor(color, 0.3);
-  const rgbLighter = `rgba(${lighter.r}, ${lighter.g}, ${lighter.b}, 0.1)`;
+  const rgbLighter = `rgba(${lighter.r}, ${lighter.g}, ${lighter.b}, var(--opacity))`;
   document.documentElement.style.setProperty("--pulse-to", rgbLighter);
 
   chrome.storage.sync.set({
@@ -46,20 +46,37 @@ const updateColor = () => {
   applyColors(val);
 };
 
-chrome.storage.sync.get(["temperature"], (result) => {
-  let savedVal = result.temperature;
+// ==================== BLOCK: INTENSITY (OPACITY) ====================
+const intensitySlider = document.getElementById("intensitySlider");
 
-  if (savedVal === undefined) {
-    savedVal = 50;
-  }
+const applyIntensity = (val) => {
+  const opacity = (val / 100).toFixed(2);
+  document.documentElement.style.setProperty("--opacity", opacity);
 
-  slider.value = savedVal;
-  applyColors(savedVal);
-});
+  chrome.storage.sync.set({ intensity: val });
+};
 
-slider.addEventListener("input", updateColor);
+const updateIntensity = () => {
+  const val = Number(intensitySlider.value);
+  applyIntensity(val);
+};
 
-// vibrant color
+// ==================== BLOCK: SIZE (EFFECT SIZE) ====================
+const sizeSlider = document.getElementById("sizeSlider");
+
+const applySize = (val) => {
+  const multiplier = (val / 50).toFixed(2);
+  document.documentElement.style.setProperty("--size-multiplier", multiplier);
+
+  chrome.storage.sync.set({ sizeValue: val });
+};
+
+const updateSize = () => {
+  const val = Number(sizeSlider.value);
+  applySize(val);
+};
+
+// ==================== BLOCK: VIBRANT CLICK COLOR (CHECKBOX) ====================
 const vibrantCheckbox = document.getElementById("vibrantClickColor");
 
 if (vibrantCheckbox) {
@@ -72,3 +89,77 @@ if (vibrantCheckbox) {
     chrome.storage.sync.set({ clickVibrantColor: enabled });
   });
 }
+
+// ==================== BLOCK: PREVIEW LIGHT MODE (CHECKBOX) ====================
+// Funkcja zmieniająca tło podglądu w panelu ustawień
+const updatePreviewBackground = (isLightMode) => {
+  const preview = document.querySelector(".cursorWrapper");
+  if (preview) {
+    if (isLightMode) {
+      preview.style.backgroundColor = "#f0f0f0"; // jasne tło
+      preview.style.color = "#000000";
+    } else {
+      preview.style.backgroundColor = "#0d0d0d"; // ciemne tło (domyślne)
+      preview.style.color = "#e0e0e0";
+    }
+  }
+};
+
+const previewLightModeCheckbox = document.getElementById("previewLightMode");
+
+if (previewLightModeCheckbox) {
+  // Wczytaj zapisany stan przy otwarciu ustawień
+  chrome.storage.sync.get(["previewLightMode"], (result) => {
+    const isLight = result.previewLightMode === true;
+    previewLightModeCheckbox.checked = isLight;
+    updatePreviewBackground(isLight);
+  });
+
+  // Zapisz przy zmianie + zaktualizuj podgląd
+  previewLightModeCheckbox.addEventListener("change", () => {
+    const enabled = previewLightModeCheckbox.checked;
+    chrome.storage.sync.set({ previewLightMode: enabled });
+    updatePreviewBackground(enabled);
+  });
+}
+
+// ==================== LOADING SAVED SETTINGS ====================
+chrome.storage.sync.get(
+  [
+    "temperature",
+    "intensity",
+    "sizeValue",
+    "clickVibrantColor",
+    "previewLightMode",
+  ],
+  (result) => {
+    const savedTemp = result.temperature ?? 50;
+    const savedIntensity = result.intensity ?? 50;
+    const savedSize = result.sizeValue ?? 50;
+    const savedVibrantClick = result.clickVibrantColor === true;
+    const savedPreviewLight = result.previewLightMode === true;
+
+    // Suwaki
+    slider.value = savedTemp;
+    intensitySlider.value = savedIntensity;
+    sizeSlider.value = savedSize;
+
+    // Checkboxy
+    if (vibrantCheckbox) {
+      vibrantCheckbox.checked = savedVibrantClick;
+    }
+    if (previewLightModeCheckbox) {
+      previewLightModeCheckbox.checked = savedPreviewLight;
+    }
+
+    // Zastosuj wartości suwaków
+    applyColors(savedTemp);
+    applyIntensity(savedIntensity);
+    applySize(savedSize);
+  }
+);
+
+// ==================== EVENT LISTENERS FOR SLIDERS ====================
+slider.addEventListener("input", updateColor);
+intensitySlider.addEventListener("input", updateIntensity);
+sizeSlider.addEventListener("input", updateSize);

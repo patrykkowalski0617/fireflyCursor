@@ -6,22 +6,24 @@
     micro-drift 10s infinite forwards linear;
   transition: opacity 1s ease;
   position: relative;
-}
-
-.fireflyCursor:not(.userSettingsCursor) {
   opacity: 0;
 }
 
+.fireflyCursor.visible {
+  opacity: var(--opacity);
+}
 .fireflyCursor.click {
   animation: pulse-shadow-click 2.5s forwards ease-out;
 }
 
 @keyframes pulse-shadow {
   from {
-    box-shadow: var(--pulse-from) 0px 0px 80px 60px;
+    box-shadow: var(--pulse-from) 0px 0px calc(80px * var(--size-multiplier))
+      calc(60px * var(--size-multiplier));
   }
   to {
-    box-shadow: var(--pulse-to) 0px 0px 90px 90px;
+    box-shadow: var(--pulse-to) 0px 0px calc(90px * var(--size-multiplier))
+      calc(90px * var(--size-multiplier));
   }
 }
 
@@ -40,12 +42,14 @@
         var(--random-color-r),
         var(--random-color-g),
         var(--random-color-b),
-        0.1
+        0.4
       )
-      0px 0px 100px 100px;
+      0px 0px calc(100px * var(--size-multiplier))
+      calc(100px * var(--size-multiplier));
   }
   100% {
-    box-shadow: var(--pulse-from) 0px 0px 80px 60px;
+    box-shadow: var(--pulse-from) 0px 0px calc(80px * var(--size-multiplier))
+      calc(60px * var(--size-multiplier));
   }
 }
 
