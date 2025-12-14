@@ -1,4 +1,4 @@
-const CLICK_DURATION_MS = 2550;
+const CLICK_DURATION_MS = 3 * 1000 + 50;
 
 let timeoutId = null;
 let clickVibrantColor = false;
