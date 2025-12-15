@@ -1,13 +1,29 @@
+const defaultSettings = {
+  pulseFrom: "rgba(238, 246, 255, var(--opacity))",
+  pulseTo: "rgba(243, 249, 255, var(--opacity))",
+  intensity: 53,
+  sizeValue: 39,
+};
+
 function applySetting(key, value) {
-  if (key === "pulseFrom" && value !== undefined) {
-    document.documentElement.style.setProperty("--pulse-from", value);
-  } else if (key === "pulseTo" && value !== undefined) {
-    document.documentElement.style.setProperty("--pulse-to", value);
-  } else if (key === "intensity" && value !== undefined) {
-    const opacity = (value / 100).toFixed(2);
+  let finalValue = value;
+
+  if (value === undefined) {
+    finalValue = defaultSettings[key];
+    if (finalValue !== undefined) {
+      chrome.storage.sync.set({ [key]: finalValue });
+    }
+  }
+
+  if (key === "pulseFrom" && finalValue !== undefined) {
+    document.documentElement.style.setProperty("--pulse-from", finalValue);
+  } else if (key === "pulseTo" && finalValue !== undefined) {
+    document.documentElement.style.setProperty("--pulse-to", finalValue);
+  } else if (key === "intensity" && finalValue !== undefined) {
+    const opacity = (finalValue / 100).toFixed(2);
     document.documentElement.style.setProperty("--opacity", opacity);
-  } else if (key === "sizeValue" && value !== undefined) {
-    const multiplier = (value / 50).toFixed(2);
+  } else if (key === "sizeValue" && finalValue !== undefined) {
+    const multiplier = (finalValue / 50).toFixed(2);
     document.documentElement.style.setProperty("--size-multiplier", multiplier);
   }
 }
@@ -15,8 +31,8 @@ function applySetting(key, value) {
 chrome.storage.sync.get(
   ["pulseFrom", "pulseTo", "intensity", "sizeValue"],
   (data) => {
-    for (const [key, value] of Object.entries(data)) {
-      applySetting(key, value);
+    for (const key of Object.keys(defaultSettings)) {
+      applySetting(key, data[key]);
     }
   }
 );
@@ -25,7 +41,9 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== "sync") return;
 
   for (const [key, change] of Object.entries(changes)) {
-    if (change.newValue !== undefined) {
+    if (change.newValue === undefined) {
+      applySetting(key, undefined);
+    } else {
       applySetting(key, change.newValue);
     }
   }
